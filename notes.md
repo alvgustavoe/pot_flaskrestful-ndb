@@ -6,7 +6,7 @@
 2. Quiero una apreciación personal de cuanto mas trabajosa es de usar que Eve. Como punto de partida, se que una tarea extra es el armar las queries a NDB.
 
 ##Answers
-1) Por lo que veo las Keys esta formadas por n-uplas de Kind + ID siendo Kind analogo a Tabla en el modelo relacional.
+1) Por lo que veo las Keys estan formadas por n-uplas de Kind + ID siendo Kind analogo a Tabla en el modelo relacional.
 
 Va un ejemplo:
 ```python
