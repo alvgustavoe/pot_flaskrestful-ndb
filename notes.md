@@ -6,7 +6,7 @@
 2. Quiero una apreciación personal de cuanto mas trabajosa es de usar que Eve. Como punto de partida, se que una tarea extra es el armar las queries a NDB.
 
 ##Answers
-1. Por lo que veo las Keys esta formadas por n-uplas de Kind + ID siendo Kind analogo a Tabla en el modelo relacional.
+1) Por lo que veo las Keys esta formadas por n-uplas de Kind + ID siendo Kind analogo a Tabla en el modelo relacional.
 
 Va un ejemplo:
 ```python
@@ -29,8 +29,22 @@ Para acceder a la key de una entidad podemos hacer lo siguiente:
 ```python
 team.key.id()
 ```
-Respecto al ID podemos pasarlo como parametros en la creacion del objeto o sino NDB asigna uno.
+Respecto al ID podemos pasarlo como parametro en la instanciacion del objeto o sino NDB asigna uno.
 
 Por lo que pude ver NDB maneja un mecanismo de consistencia de datos mediante relaciones parent/child, me parecio bastante importate lo siguiente:
 
 *Entities whose keys have the same root form an entity group or group. If entities are in different groups, then changes to those entities might sometimes seem to occur "out of order". If the entities are unrelated in your application's semantics, that's fine. But if some entities' changes should be consistent, your application should make them part of the same group when creating them.*
+
+A la hora de modelar el negocio creo importante podes generar este tipo de relacion para no perder la integridad de datos, si es que aplica. En el ejemplo comiteado la relacion de hace por una propiedad Key para almacenar las claves en relacion, pero no existe integridad por ejemplo en caso de que se borre un Team sus jugadores van a seguir apuntando a un Team inexistente.
+
+Estaria bueno encarar el mismo ejemplo de Equipos y Jugadores usando esta forma de modelo. Si te parece lo codeo, avisame.
+
+Respecto a la keys compuestas responden a este modelo parent/child, ejemplo:
+```python
+ndb.Key('Account', 'sandy@foo.com', 'Message', 123, 'Revision', '1')
+ndb.Key('Revision', '1', parent = ndb.Key('Account', 'sandy@foo.com', 'Message', 123)
+# or
+ndb.Key('Revision', '1',
+  parent = ndb.Key('Message', 123, parent = ndb.Key('Account', 'sandy@foo.com')))
+```
+2) 
