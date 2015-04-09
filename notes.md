@@ -47,4 +47,16 @@ ndb.Key('Revision', '1', parent = ndb.Key('Account', 'sandy@foo.com', 'Message',
 ndb.Key('Revision', '1',
   parent = ndb.Key('Message', 123, parent = ndb.Key('Account', 'sandy@foo.com')))
 ```
-2) 
+2) Respecto a Python EVE por lo que veo FlaskRESTful ofrece mayor flexibilidad para hacer una solucion custom y una mejor adaptacion, realmente EVE nos libra de codear varios componentes aunque pienso que usando FlaskRESTful + calllog211 de Modesty (ejemplo que me enviaste) tenemos varios componentes a disposicion (ordenamiento, segmentacion, timestamps en entidades (created, updated), filtros) y lo mejor de todo compotibilidad no NBD. Seguro varios features de EVE si nos escapan y tendremos que desarrollarlos pero personalmente prefiero esto a tener que tocar el framework EVE para que responda a nuestras necesidades.
+
+NDB nos ofrece tambien GQL: SQL-like language for retrieving entities or keys from the App Engine Datastore.
+
+Por lo que veo es simple y pienso que simple tiene que ser dado que es un motor no-sql (joins no estarian disponibles).
+
+Va el ejemplo que existe en la doc. de google:
+```python
+qry = ndb.gql("SELECT * FROM Account WHERE spam > :1")
+qry2 = qry.bind(10)
+#or
+qry = ndb.gql("SELECT * FROM Account WHERE spam > :1", 10)
+```
