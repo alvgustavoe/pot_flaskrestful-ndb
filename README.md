@@ -97,7 +97,7 @@ This way will be easier teach to new developers how we use this technology.
     }
 }
 ```
-### Retrieve all Players for existing Team
+### Retrieve all Players from existing Team
 ### curl -v http://localhost:8080/team/5629499534213120/players
 ```ssh
 * Hostname was NOT found in DNS cache
@@ -141,7 +141,7 @@ This way will be easier teach to new developers how we use this technology.
     }
 }
 ```
-### Create new Player for existing Team
+### Create new Player from existing Team
 ### curl -vX PUT http://localhost:8080/team/5629499534213120/players -H "Content-Type: application/json" -d '{"name": "Alvarez Balanta"}'
 ```ssh
 * Hostname was NOT found in DNS cache
