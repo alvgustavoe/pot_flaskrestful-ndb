@@ -35,7 +35,7 @@ Por lo que pude ver NDB maneja un mecanismo de consistencia de datos mediante re
 
 *Entities whose keys have the same root form an entity group or group. If entities are in different groups, then changes to those entities might sometimes seem to occur "out of order". If the entities are unrelated in your application's semantics, that's fine. But if some entities' changes should be consistent, your application should make them part of the same group when creating them.*
 
-A la hora de modelar el negocio creo importante podes generar este tipo de relacion para no perder la integridad de datos, si es que aplica. En el ejemplo comiteado la relacion de hace por una propiedad Key para almacenar las claves en relacion, pero no existe integridad por ejemplo en caso de que se borre un Team sus jugadores van a seguir apuntando a un Team inexistente.
+A la hora de modelar el negocio creo importante poder generar este tipo de relacion para no perder la integridad de datos, si es que aplica. En el ejemplo comiteado la relacion esta construida por una propiedad Key para almacenar las claves en relacion, pero no existe integridad - por ejemplo en caso de que se borre un Team sus jugadores van a seguir apuntando a un Team inexistente.
 
 Estaria bueno encarar el mismo ejemplo de Equipos y Jugadores usando esta forma de modelo. Si te parece lo codeo, avisame.
 
