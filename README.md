@@ -12,7 +12,7 @@ This way will be easier teach to new developers how we use this technology.
 ***
 ## API Endpoints
 ### Retrieve all Teams
-### curl -v http://localhost:8080/teams
+### curl -v http://localhost:8080/v2/teams
 ```ssh
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
@@ -56,7 +56,7 @@ This way will be easier teach to new developers how we use this technology.
 }
 ```
 ### Create new Team
-### curl -vX PUT http://localhost:8080/teams -H "Content-Type: application/json" -d '{"name": "Racing Club", "description": "amargos"}'
+### curl -vX PUT http://localhost:8080/v2/teams -H "Content-Type: application/json" -d '{"name": "Racing Club", "description": "amargos"}'
 ```ssh
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
@@ -82,23 +82,14 @@ This way will be easier teach to new developers how we use this technology.
 ```
 ```json
 {
-    "result": {
-        "entities": [
-            {
-                "id": 5275456790069248,
-                "description": "amargos",
-                "name": "Racing Club"
-            }
-        ]
-    },
     "status": {
-        "message": "OK",
-        "code": 200
+        "code": 201,
+        "message": "created"
     }
 }
 ```
 ### Retrieve all Players from existing Team
-### curl -v http://localhost:8080/team/5629499534213120/players
+### curl -v http://localhost:8080/v2/team/5629499534213120/players
 ```ssh
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
@@ -142,7 +133,7 @@ This way will be easier teach to new developers how we use this technology.
 }
 ```
 ### Create new Player from existing Team
-### curl -vX PUT http://localhost:8080/team/5629499534213120/players -H "Content-Type: application/json" -d '{"name": "Alvarez Balanta"}'
+### curl -vX PUT http://localhost:8080/v2/team/5629499534213120/players -H "Content-Type: application/json" -d '{"name": "Alvarez Balanta"}'
 ```ssh
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
@@ -169,17 +160,71 @@ This way will be easier teach to new developers how we use this technology.
 ```json
 {
     "status": {
-        "message": "OK",
+        "code": 201,
+        "message": "created"
+    }
+}
+```
+### Delete Team
+### curl -vX DELETE http://localhost:8080/v2/team/5629499534213120
+```ssh
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> DELETE /v2/team/5629499534213120 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< content-type: application/json
+< Cache-Control: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Content-Length: 47
+* Server Development/2.0 is not blacklisted
+< Server: Development/2.0
+< Date: Fri, 10 Apr 2015 18:37:20 GMT
+< 
+* Connection #0 to host localhost left intact
+```
+```json
+{
+    "status": {
+        "message": "deleted",
         "code": 200
-    },
-    "result": {
-        "entities": [
-            {
-                "id": 5733953138851840,
-                "team": "ahdkZXZ-Zmxhc2tyZXN0ZnVscGx1c25kYnIZCxIMRm9vdGJhbGxUZWFtGICAgICAgIAKDA",
-                "name": "Alvarez Balanta"
-            }
-        ]
+    }
+}
+```
+### Update Player
+### curl -vX PATCH http://localhost:8080/v2/team/6333186975989760/player/4925812092436480 -H "Content-Type: application/json" -d '{"name": "Alvarez Balanta"}'
+```ssh
+* Hostname was NOT found in DNS cache
+*   Trying 127.0.0.1...
+* Connected to localhost (127.0.0.1) port 8080 (#0)
+> PATCH /v2/team/6333186975989760/player/4925812092436480 HTTP/1.1
+> User-Agent: curl/7.35.0
+> Host: localhost:8080
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 27
+> 
+* upload completely sent off: 27 out of 27 bytes
+< HTTP/1.1 200 OK
+< content-type: application/json
+< Cache-Control: no-cache
+< Expires: Fri, 01 Jan 1990 00:00:00 GMT
+< Content-Length: 47
+* Server Development/2.0 is not blacklisted
+< Server: Development/2.0
+< Date: Fri, 10 Apr 2015 19:06:05 GMT
+< 
+* Connection #0 to host localhost left intact
+```
+```json
+{
+    "status": {
+        "code": 200,
+        "message": "updated"
     }
 }
 ```
