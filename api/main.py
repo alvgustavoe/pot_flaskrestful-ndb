@@ -11,8 +11,8 @@ api = restful.Api(app)
 api.add_resource(TeamController, '/v1/teams')
 api.add_resource(PlayerController, '/v1/team/<team_id>/players')
 
-api.add_resource(TeamControllerV2, '/v2/teams')
-api.add_resource(PlayerControllerV2, '/v2/team/<team_id>/players')
+api.add_resource(TeamControllerV2, '/v2/teams', '/v2/team/<team_id>')
+api.add_resource(PlayerControllerV2, '/v2/team/<team_id>/players', '/v2/team/<team_id>/players/<player_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
