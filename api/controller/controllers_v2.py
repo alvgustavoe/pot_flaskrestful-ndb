@@ -64,9 +64,11 @@ class PlayerControllerV2(Resource):
 
         return {'status': {'message': 'created', 'code': 201}}
         
-    def patch(self, player_id):
-        player_key = ndb.Key(PlayerControllerV2, int(player_id))
+    def patch(self, team_id, player_id):
+        print player_id
+        player_key = ndb.Key(FootballTeamV2, int(team_id), FootballPlayerV2, int(player_id))
         player = player_key.get()
+        print player
 
         args = player_parser.parse_args()
         player.name = args['name']
@@ -75,7 +77,7 @@ class PlayerControllerV2(Resource):
         return {'status': {'message': 'updated', 'code': 200}}
 
     def delete(self, team_id, player_id):
-        player_key = ndb.Key(PlayerControllerV2, int(player_id))
+        player_key = ndb.Key(FootballTeamV2, int(team_id), FootballPlayerV2, int(player_id))
         player_key.delete()
 
         return {'status': {'message': 'deleted', 'code': 200}}
