@@ -1,11 +1,9 @@
 from google.appengine.ext import ndb
 
 
-class FootballTeam(ndb.Model):
+class FootballTeamV2(ndb.Model):
 	name = ndb.StringProperty()
 	description = ndb.StringProperty()
 
-class FootballPlayer(ndb.Model):
+class FootballPlayerV2(ndb.Model):
 	name = ndb.StringProperty()
-	team = ndb.KeyProperty(kind=FootballTeam)
-
